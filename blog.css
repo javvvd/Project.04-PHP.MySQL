@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+:root {
+  --primary: #6366f1;
+  --accent: #06b6d4;
+  --bg: #f0f2f5;
+  --text: #1f2937;
+  --text-light: #6b7280;
+  --white: #ffffff;
+  --radius: 20px;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --glass: rgba(255, 255, 255, 0.6);
+  --blur: blur(16px);
+  --transition: all 0.3s ease-in-out;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 16px;
+  padding-bottom: 5rem;
+}
+
+nav {
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  padding: 1rem 2rem;
+  margin: 1rem;
+  border-radius: var(--radius);
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow);
+}
+
+nav a {
+  color: var(--primary);
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: 700;
+  font-size: 1rem;
+  position: relative;
+  transition: var(--transition);
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+h1 {
+  font-size: 3rem;
+  color: var(--primary);
+  font-weight: 700;
+  text-align: center;
+  margin: 3rem 0 1rem;
+}
+
+article {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 2.5rem 2rem;
+  background: var(--glass);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  transition: var(--transition);
+}
+
+article:hover {
+  transform: translateY(-6px);
+}
+
+article h2 {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+article p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  text-align: justify;
+  line-height: 1.9;
+}
