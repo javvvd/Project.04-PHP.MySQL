@@ -12,14 +12,13 @@ if ($conn->connect_error) {
 $name = $_POST['name'] ?? '';
 $email = $_POST['email'] ?? '';
 $message = $_POST['message'] ?? '';
-
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Pesan Terkirim</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!-- Tambah CSS -->
 </head>
 <body>
     <nav>
@@ -29,22 +28,21 @@ $message = $_POST['message'] ?? '';
             <a href="blog.html">Blog</a> |
             <a href="contact.html">Contact</a>
         </div>
+        <span id="clock" class="nav-clock"></span>
     </nav>
+
     <h1>Status Pengiriman</h1>
-    <div style="background-color: white; padding: 20px; border-radius: 10px;">
+    <article>
     <?php
     if ($name && $email && $message) {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "<p>Email tidak valid.</p>";
-        } elseif (strlen($message) > 500) {
-            echo "<p>Pesan terlalu panjang.</p>";
         } else {
             $stmt = $conn->prepare("INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)");
             $stmt->bind_param("sss", $name, $email, $message);
             $stmt->execute();
             $stmt->close();
-
-            echo "<p>Pesan berhasil dikirim. Terima kasih, <strong>$name</strong>!</p>";
+            echo "<p>Terima kasih, <strong>$name</strong>. Pesanmu telah terkirim.</p>";
         }
     } else {
         echo "<p>Harap isi semua kolom.</p>";
@@ -52,6 +50,6 @@ $message = $_POST['message'] ?? '';
     $conn->close();
     ?>
     <p><a href="contact.html">Kembali ke Form</a></p>
-    </div>
+    </article>
 </body>
 </html>
